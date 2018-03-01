@@ -23,14 +23,32 @@ public class ShapeList extends JScrollPane {
 
     public void update() {
         // Change if shapes are changed on server
-        // Found on StackOverflow @ https://stackoverflow.com/questions/122105/what-is-the-best-way-to-filter-a-java-collection
-        List<Shape> yours = shapeList.stream().filter(s -> s.getID() == Window.clientID).collect(Collectors.toList());
-        yourShapes.setListData((Shape[]) yours.toArray());
+        DefaultListModel<Shape> dlm = new DefaultListModel<>();
+        for (Shape s : shapeList) {
+            if (s.getID() == Window.clientID) {
+                dlm.addElement(s);
+            }
+        }
+        yourShapes.setModel(dlm);
     }
 
     public void addShape(Shape s) {
         shapeList.add(s);
         update();
+    }
+
+    public void removeYourShapes() {
+        shapeList.removeIf(s -> s.getID() == Window.clientID);
+        update();
+    }
+
+    public void removeAllShapes() {
+        shapeList.clear();
+        update();
+    }
+
+    public ArrayList<Shape> getAllShapes() {
+        return shapeList;
     }
 
 }

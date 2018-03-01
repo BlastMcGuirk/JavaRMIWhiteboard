@@ -1,25 +1,27 @@
-package client;
+package server;
+// GraphicalObject is a class containing the state of a graphical object
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class Shape {
+public class GraphicalObject implements Serializable{
 
-    public enum Type {Circle, Triangle, Rectangle}
-    private Type type;
+    public enum ShapeType {Circle, Triangle, Rectangle}
+    private ShapeType type;
     private int width, height;
     private Color color;
     private int ID;
     private Point point;
 
-    public Shape() {
-        this.type = Type.Rectangle;
+    public GraphicalObject() {
+        this.type = ShapeType.Rectangle;
         this.width = 50;
         this.height = 50;
         this.color = Color.BLACK;
         this.ID = 0;
     }
 
-    public Shape(Type type, Color color, int width, int height, int ID) {
+    public GraphicalObject(ShapeType type, Color color, int width, int height, int ID) {
         this.type = type;
         this.width = width;
         this.height = height;
@@ -27,10 +29,10 @@ public class Shape {
         this.ID = ID;
     }
 
-    public Type getType() {
+    public ShapeType getType() {
         return type;
     }
-    public void setType(Type type) {
+    public void setType(ShapeType type) {
         this.type = type;
     }
     public int getWidth() {
