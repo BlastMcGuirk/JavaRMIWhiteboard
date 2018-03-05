@@ -1,12 +1,11 @@
 package server;
 
-import java.net.MalformedURLException;
-import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Vector;
 
 public class ShapeListServant extends UnicastRemoteObject implements ShapeList {
+    private static final long serialVersionUID = 1L;
     private Vector<Shape> shapeList;
     private int versionNumber;
 
@@ -18,12 +17,16 @@ public class ShapeListServant extends UnicastRemoteObject implements ShapeList {
 
     @Override
     public Shape newShape(GraphicalObject g) throws RemoteException {
+        System.out.println("Adding shape to list!");
+
         // increment version number
         versionNumber++;
         // Add shape to list
         Shape shape = new ShapeServant(g, versionNumber);
         shapeList.add(shape);
         // Return the shape being created
+
+        System.out.println("Shape successfully added to list");
         return shape;
     }
 

@@ -6,7 +6,7 @@ public class ServerLauncher {
 
     public static void main(String[] args) {
         try {
-            ShapeListServant shapeListServant = new ShapeListServant();
+            ShapeList shapeListServant = new ShapeListServant();
             Naming.rebind("ShapeList", shapeListServant);
             System.out.println("ShapeList bound to registry");
         } catch (Exception e) {

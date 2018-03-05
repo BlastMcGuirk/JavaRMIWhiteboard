@@ -21,6 +21,15 @@ public class GraphicalObject implements Serializable{
         this.ID = 0;
     }
 
+    public GraphicalObject(Point p) {
+        this.type = ShapeType.Rectangle;
+        this.width = 50;
+        this.height = 50;
+        this.color = Color.BLACK;
+        this.ID = 0;
+        this.point = p;
+    }
+
     public GraphicalObject(ShapeType type, Color color, int width, int height, int ID) {
         this.type = type;
         this.width = width;
